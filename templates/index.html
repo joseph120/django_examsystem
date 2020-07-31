@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="../static/bootstrap-4.5.0-dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 必须在引入bootstarp.js之前引入 -->
+    <script src="../static/jquery-3.5.1.min.js"></script>
+    <script src="../static/bootstrap-4.5.0-dist/js/bootstrap.min.js"></script>
+    <script src="../static/js/passwordstrength.js"></script>
+
+    <link href="../static/css/main.css" rel="stylesheet">
+
+    <title>在线考试系统</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-sm bg-light navbar-light ">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="/toIndex/"><h2>广东工业大学在线考试系统</h2></a>
+        </li>
+
+        <li style="position: fixed;right: 70px; font-size: 25px;color: #9fcdff">{{ student.name }},欢迎您登录</li>
+        {#        <li>{{ message }}</li>#}
+        <a href="/logout/">
+            <li style="position:absolute;right: 20px; font-size: 15px;top:15px;color:#cc1313">退出</li>
+        </a>
+
+    </ul>
+</nav>
+
+
+<div class="container">
+
+    <br>
+    <!-- Nav pills -->
+    <ul class="nav nav-pills" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="pill" href="#home">个人信息</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="pill" href="#menu1">考试信息</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="pill" href="#menu2">成绩查询</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="pill" href="#menu3">密码修改</a>
+        </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div id="home" class="container tab-pane active"><br>
+            <h3>个人信息</h3>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>属性</th>
+                    <th>信息</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td id="sno1">学号</td>
+                    <td id="sno">{{ student.id }}</td>
+
+                </tr>
+                <tr class="table-primary">
+                    <td>姓名</td>
+                    <td>{{ student.name }}</td>
+
+                </tr>
+                <tr class="table-success">
+                    <td>性别</td>
+                    <td>{{ student.sex }}</td>
+
+                </tr>
+                <tr class="table-danger">
+                    <td>学院</td>
+                    <td>{{ student.dept }}</td>
+
+                </tr>
+
+                <tr class="table-success">
+                    <td>专业</td>
+                    <td>{{ student.major }}</td>
+
+                </tr>
+
+                <tr class="table-warning">
+                    <td>邮箱地址</td>
+                    <td>{{ student.email }}</td>
+
+                </tr>
+                <tr class="table-active">
+                    <td>出生日期</td>
+                    <td>{{ student.birth }}</td>
+
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <div id="menu1" class="container tab-pane fade"><br>
+            <h3>考试信息</h3>
+            <p></p>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>学号</th>
+                    <th>姓名</th>
+                    <th>专业</th>
+                    <th>考试科目</th>
+                    <th>考试时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {#   遍历字典  paper #}
+                {% for paper1 in paper %}
+
+
+
+
+
+                    <tr class="table-info">
+                        <td>{{ student.id }}</td>
+                        <td>{{ student.name }}</td>
+                        <td>{{ student.major }}</td>
+                        <td>{{ paper1.subject }}{{ paper2.subject }}</td>
+                        <td>{{ paper1.examtime }} {{ paper2.examtime }}</td>
+                        <td>
+                            {#              <a href="/startExam/?sid={{ student.id }}&subject={{ paper1.subject }}&major={{ student.major }}&examtime={{ paper1.examtime | date:"Y-m-d H:i" }}">#}
+                            <button class="btn btn-primary" id="{{ paper1.subject }}">开始考试</button>
+
+                        </td>
+
+                    </tr>
+                {% endfor %}
+
+
+                </tbody>
+            </table>
+
+            <div class="miss" style="display: none;">
+                {#		  <div class="logo"><span style="display:block;color:#000;font-size:16px;font-weight:700;text-align:center;padding-top:5.4%;margin: 0 auto;">提示</span></div>#}
+                <div class='qrcode'
+                     style="margin-top:5%;width: 76%;margin-left:12%;text-align:center;font-size:15px"></div>
+                {#    <div class="heart" style="margin-top:6%"><span style="text-align:center;background:#ED171F;display:block;width:30.4%;margin:0 auto;font-size:14px;color:#fff;font-weight:700;height:36px;border-radius:12px;line-height:36px;border:1px solid red" id="alertSure">确定</span></div>#}
+
+                <button class="qux"
+                        style=" position: absolute;bottom: 10px;left:35%;text-align:center;background:#ED171F;display:block;width:30%;margin:0 auto;font-size:15px;color:#fff;font-weight:700;height:20px;border-radius:12px;line-height:20px;border:1px solid red"
+                        id="alertSure">确定
+                </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+            </div>
+
+
+            <div class="shadow"></div>
+
+        </div>
+
+        <div id="menu2" class="container tab-pane fade"><br>
+            <h3>考试成绩</h3>
+            <p></p>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>科目</th>
+                    <th>成绩</th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for grade1 in grade %}
+                    <tr class="table-primary">
+                        <td>{{ student.name }}</td>
+                        <td>{{ grade1.subject }}</td>
+                        <td>{{ grade1.grade }}</td>
+
+                    </tr>
+                {% endfor %}
+
+
+                </tbody>
+            </table>
+        </div>
+        <div id="menu3" class="container tab-pane fade"><br>
+            <p></p>
+            <form id="jsResetPwdForm" autocomplete="off">
+                <div class="modifyPwd-item model-select-item resetPwd">
+                    <label style="font-size: 20px;"><em class="red"
+                                                        style="color: red;position:absolute;left:37%;font-size: 20px;">*</em>旧密码</label>
+                    <input id="oldPassword" type="password" name="oldPwd"
+                           class="resetPwd-form-input input-field  modifyPwd-form-input"
+                           placeholder="密码必须由6-20位字母、数字、符号组成" style="width: 250px;"/>
+                </div>
+                <div class="modifyPwd-item model-select-item resetPwd">
+                    <label style="font-size: 20px;"><em class="red"
+                                                        style="color: red;position:absolute;left:37%;font-size: 20px;">*</em>新密码</label>
+                    <input id="newPassword" type="password" name="newPwd"
+                           class="resetPwd-form-input input-field  modifyPwd-form-input"
+                           placeholder="密码必须由6-20位字母、数字、符号组成" style="width: 250px;" onKeyUp="pwStrength(this.value)"
+                           onBlur="pwStrength1()"/>
+                </div>
+                <div class="passwordtishi" style="display: none;position: absolute;right: 23.5%;top:31%;">
+                    <font class="c666" style="font-style: italic;font-weight: bold;">安全程度：</font>
+                    <span id="strength_L" style="display:inline-block;width: 40px;">弱</span><span id="strength_M"
+                                                                                                  style="display:inline-block;width: 40px;">中</span><span
+                        id="strength_H" style="display:inline-block;width: 40px;">强</span>
+                </div>
+                <div class="modifyPwd-item model-select-item resetPwd">
+                    <label style="font-size: 20px;margin-left:-1.8%;"><em class="red"
+                                                                          style="color: red;position:absolute;left:35.5%;font-size: 20px;">*</em>密码确认</label>
+                    <input id="confirmPassword" name="rePwd" type="password"
+                           class="resetPwd-form-input input-field  modifyPwd-form-input"
+                           placeholder="密码必须由6-20位字母、数字、符号组成" style="width: 250px;"/>
+                </div>
+                <div class="modifyPwd-item model-select-item resetPwd">
+                    <label style="font-size: 20px;"><em class="red"
+                                                        style="color: red;position:absolute;left:37%;font-size: 20px;">*</em>验证码</label>
+                    <input id="identitycode" name="idcode" class="resetPwd-form-input input-field  modifyPwd-form-input"
+                           placeholder="输入验证码" style="width: 250px;"/>
+                </div>
+                <div class="modifyPwd-item model-select-item resetPwd">
+                    <button id="passwordReset"  class="btn btn-primary">保存</button>
+                    <span id="errormsg" class="text-center"></span>
+                </div>
+            </form>
+            <div id="dsendemail">
+                <input type="button" id="btnemail" value="发送验证码到邮箱"
+                       style="color:white;background:dodgerblue;position:absolute;top:41.4%;left:62.5%;"/>
+                <span id="emailmsg" class="text-center"></span>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+</body>
+<script type="text/javascript">
+
+    $(function () {
+        {% for paper1 in paper %}
+            $('#{{ paper1.subject }}').click(function () {
+                $.ajax({
+                    url: "{% url 'startExam' %}",
+                    method: 'post',
+                    data: {
+                        sid: '{{ student.id }}',
+                        subject: '{{ paper1.subject }}',
+                        major: '{{ student.major }}',
+                        examtime: '{{ paper1.examtime | date:"Y-m-d H:i" }}',
+                    },
+                    datatype: "json",
+                    success: function (data) {
+                        if (data.status == 1) {
+                            $('.miss').show(400);
+                            $('.shadow').css('display', 'block');
+                            $(".qrcode").html("考试时间已过！");
+                        } else if (data.status == 2) {
+                            $('.miss').show(400);
+                            $('.shadow').css('display', 'block');
+                            $(".qrcode").html("未到考试时间，请稍后！");
+                        } else {
+                            window.location.replace("/startExam/?sid={{ student.id }}&subject={{ paper1.subject }}&major={{ student.major }}");
+                        }
+                    }
+                })
+                $('.qux').click(function () {
+                    $('.miss').hide(400);
+                    $('.shadow').css('display', 'none');
+                })
+            })
+        {% endfor %}
+        $('#passwordReset').click(function () {
+            $.ajax({
+                method: "POST",
+                dataType: 'json',
+                url: "{% url 'changePwd' %}",
+                data: $('#jsResetPwdForm').serialize(),
+        {#async: true,#}
+                success: function (data) {
+                    if (data.status == 1) {
+                        $("#errormsg").html(data.message);
+                    } else {
+                        alert(1)
+                    }
+                }
+            });
+            return false;
+    })
+    })
+    var wait = 60;
+    {#document.getElementById("btnemail").onclick = function () {#}
+        $('#btnemail').click(function (){
+        time(this);
+        $.ajax({
+            method: 'POST',
+            async:false,
+            datatype: 'json',
+            url: "{% url 'sendEmail' %}",
+            data: {
+                email:'{{ student.email }}'
+            },
+            success: function (data) {
+                if (data.status == 1) {
+                    $("#emailmsg").html(data.message);
+                } else {
+                    alert(1)
+                }
+            }
+    })
+        })
+
+
+    {##}
+    {##}
+
+    {#return false;#}
+    {#time(this);#}
+
+</script>
+</html>

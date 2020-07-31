@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<title>登录</title>
+<link rel="stylesheet" type="text/css" href="../static/css/login.css" />
+</head>
+
+<body>
+
+<img class="bgone" src="../static/img/1.jpg" />
+<img class="pic" src="../static/img/a.png" />
+<form class="form-horizontal" action="/userLogin/" method="post">
+<div class="table">
+	<div class="wel">在线考试系统</div>
+	<div class="wel1">Online examination system</div>
+	<div class="user">
+		<div id="yonghu" style=""><img src="../static/img/yhm.png" /></div>
+		<input type="text" name="user_id" placeholder="账号" />
+	</div>
+	<div class="password">
+		<div id="yonghu"><img src="../static/img/mm.png" /></div>
+		<input type="password" name="password" placeholder="密码"/>
+
+	</div>
+
+    <span id="tips">{{ message }}</span>
+
+    <div class="dl">
+		<input type="radio" id="denglu0" name="denglu" value="tec"/>
+		<label for="awesome0">教师登录</label>
+		<input type="radio" id="denglu1" name="denglu" value="stu"/>
+		<label for="awesome1">学生登录</label>
+        <input type="radio" id="denglu2" name="denglu" value="admin1"/>
+		<label for="awesome1">管理员登录</label>
+
+	</div>
+
+
+    <button type="submit" class="btn btn-primary">登录</button>
+
+
+</div>
+</form>
+</body>
+</html>
+{#<!DOCTYPE html>#}
+{#<html>#}
+{#<head>#}
+{#<meta charset="utf-8">#}
+{#<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">#}
+{##}
+{#<meta name="description" content="登录界面">#}
+{#<meta name="keywords" content="登录界面">#}
+{#<link href="" rel="stylesheet">#}
+{#    <link href="../static/bootstrap-4.5.0-dist/css/bootstrap.min.css" rel="stylesheet">#}
+{#    <!-- 必须在引入bootstarp.js之前引入 -->#}
+{#    <script src="../static/jquery-3.5.1.min.js"></script>#}
+{##}
+{#    <script src="../static/bootstrap-4.5.0-dist/js/bootstrap.min.js"></script>#}
+{#    <link href="../static/css/login.css" rel="stylesheet">#}
+{#    <title>在线考试系统</title>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#<div id="login">#}
+{#<h1>在线考试管理系统</h1>#}
+{#	<form action="" method="post">#}
+{#		<p><input type="text" name="user" id="user" placeholder="用户名"></p>#}
+{#		<p><input type="password" name="passw0rd" id="pwd" placeholder="密码"></p>#}
+{#		<p><input type="submit" id="submit" value="登录"></p>#}
+{#	</form>#}
+{#</div>#}
+{#</body>#}
+{#</html>#}
